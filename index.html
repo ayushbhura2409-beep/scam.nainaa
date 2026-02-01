@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Naina ❤️</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffd6e0, #ffeef2);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      display: inline-block;
+      padding: 50px;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 14px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #ddd;
+      color: #333;
+      position: relative;
+    }
+
+    .hint {
+      font-size: 14px;
+      color: #888;
+      margin-top: -5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Music -->
+<audio id="bgMusic" autoplay loop>
+  <source src="teenage-dream.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Naina, will you be my Valentine? ❤️</h1>
+
+  <button class="yes" onclick="yesClick()">Yes</button>
+  <br>
+
+  <button class="no" id="noBtn" onclick="moveNo()">No</button>
+  <div class="hint">No seems a bit shy</div>
+</div>
+
+<script>
+function yesClick() {
+  document.body.innerHTML =
+    "<h1>💖 Best answer ever, Naina! 💖</h1><p>You just unlocked main character energy ✨</p>";
+}
+
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * 80 + "%";
+  btn.style.top = Math.random() * 80 + "%";
+}
+</script>
+
+</body>
+</html>

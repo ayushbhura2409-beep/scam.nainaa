@@ -1,34 +1,135 @@
-<script>
-let noSize = 1;
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Naina 💌</title>
 
-function yesClick() {
-  document.body.innerHTML =
-    "<h1>💖 Best answer ever, Naina! 💖</h1><p>You just unlocked main character energy ✨</p>";
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#ffe0ea,#fff5f8);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
 }
 
-function moveNo() {
+/* postcard */
+#postcard {
+  background:white;
+  padding:60px 90px;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.15);
+  font-size:36px;
+  cursor:pointer;
+  transition:.3s;
+}
+#postcard:hover { transform:scale(1.05); }
+
+/* card */
+#card {
+  display:none;
+  background:white;
+  padding:50px;
+  border-radius:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  text-align:center;
+  position:relative;
+}
+
+button {
+  padding:14px 26px;
+  font-size:18px;
+  border:none;
+  border-radius:12px;
+  margin:10px;
+  cursor:pointer;
+}
+
+.yes { background:#ff4d6d; color:white; }
+.no { background:#ddd; }
+
+.heart {
+  position:absolute;
+  font-size:24px;
+  animation:float 3s linear forwards;
+}
+
+@keyframes float {
+  to {
+    transform:translateY(-500px) scale(1.5);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="postcard">💌 For Naina</div>
+
+<div id="card">
+  <h1>Will you be my Valentine? ❤️</h1>
+  <div id="buttons">
+    <button class="yes" onclick="yesWin()">Yes</button>
+    <button class="no" id="noBtn" onclick="noChaos()">No</button>
+  </div>
+  <div style="font-size:13px;color:#888">No seems a bit shy</div>
+</div>
+
+<script>
+/* open card */
+document.getElementById("postcard").onclick = () => {
+  postcard.style.display="none";
+  card.style.display="block";
+};
+
+let noScale = 1;
+
+function noChaos(){
   const btn = document.getElementById("noBtn");
 
-  // shrink
-  noSize *= 0.85;
-  btn.style.transform = `scale(${noSize})`;
+  // shrink + run
+  noScale *= .85;
+  btn.style.transform=`scale(${noScale})`;
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*80+"%";
+  btn.style.top=Math.random()*80+"%";
 
-  // move randomly
-  btn.style.position = "absolute";
-  btn.style.left = Math.random() * 80 + "%";
-  btn.style.top = Math.random() * 80 + "%";
+  // spawn extra YES buttons
+  for(let i=0;i<3;i++){
+    let y=document.createElement("button");
+    y.innerText="Yes";
+    y.className="yes";
+    y.style.position="absolute";
+    y.style.left=Math.random()*80+"%";
+    y.style.top=Math.random()*80+"%";
+    y.onclick=yesWin;
+    document.body.appendChild(y);
+  }
+}
 
-  // change text
-  const texts = [
-    "No",
-    "Are you sure?",
-    "Think again 😌",
-    "Still no?",
-    "Last chance 👀",
-    "Okay fine run 😭"
-  ];
+function yesWin(){
+  document.getElementById("card").innerHTML =
+    "<h1>💖 YAY NAINA 💖</h1><p>You just made my day ✨</p>";
+  heartBurst();
+}
 
-  btn.innerText = texts[Math.floor(Math.random() * texts.length)];
+/* hearts animation */
+function heartBurst(){
+  for(let i=0;i<40;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left=Math.random()*100+"%";
+    h.style.bottom="0px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),3000);
+  }
 }
 </script>
 
+</body>
+</html>
